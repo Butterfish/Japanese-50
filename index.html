@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>日语五十音图</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="page-header">
+      <h1>五十音图（清音）</h1>
+      <p class="subtitle">平假名 · 片假名 · 罗马音</p>
+    </header>
+
+    <main class="main">
+      <div class="mode-bar">
+        <p class="mode-bar__label">模式</p>
+        <div class="mode-toggle" role="radiogroup" aria-label="学习模式切换">
+          <button
+            type="button"
+            id="mode-learn"
+            class="mode-btn is-active"
+            aria-pressed="true"
+            aria-controls="table-region"
+          >
+            学习
+          </button>
+          <button
+            type="button"
+            id="mode-quiz-btn"
+            class="mode-btn"
+            aria-pressed="false"
+            aria-controls="quiz-panel"
+          >
+            听写练习
+          </button>
+        </div>
+      </div>
+
+      <section
+        id="quiz-panel"
+        class="quiz-panel"
+        hidden
+        aria-labelledby="quiz-heading"
+      >
+        <h2 id="quiz-heading" class="quiz-heading">听写练习</h2>
+
+        <div class="quiz-type" role="radiogroup" aria-label="听写假名种类">
+          <span class="quiz-type__label" id="quiz-type-label">练习种类</span>
+          <div class="quiz-type__opts">
+            <label class="quiz-type__opt">
+              <input
+                type="radio"
+                name="quiz-script"
+                id="quiz-script-hira"
+                value="hira"
+              />
+              <span class="quiz-type__text">平假名</span>
+            </label>
+            <label class="quiz-type__opt">
+              <input
+                type="radio"
+                name="quiz-script"
+                id="quiz-script-kata"
+                value="kata"
+                checked
+              />
+              <span class="quiz-type__text">片假名</span>
+            </label>
+          </div>
+        </div>
+
+        <p id="quiz-hint" class="quiz-hint"></p>
+        <p id="quiz-progress" class="quiz-progress" aria-live="polite"></p>
+        <div class="quiz-actions">
+          <button type="button" id="quiz-play" class="quiz-play-btn">播放读音</button>
+          <button type="button" id="quiz-restart-hira" class="quiz-restart-btn quiz-restart-btn--sub">
+            重新开始 · 平假名
+          </button>
+          <button type="button" id="quiz-restart-kata" class="quiz-restart-btn quiz-restart-btn--sub">
+            重新开始 · 片假名
+          </button>
+        </div>
+        <form id="quiz-form" class="quiz-form" autocomplete="off">
+          <label id="quiz-input-label" class="quiz-label" for="quiz-input">片假名</label>
+          <input
+            type="text"
+            id="quiz-input"
+            name="quiz-input"
+            class="quiz-input"
+            lang="ja"
+            inputmode="text"
+            placeholder="例如：ア"
+            maxlength="4"
+            autocapitalize="off"
+            spellcheck="false"
+          />
+          <div class="quiz-buttons">
+            <button type="submit" id="quiz-submit" class="quiz-submit">提交</button>
+          </div>
+        </form>
+        <p id="quiz-feedback" class="quiz-feedback" role="status" aria-live="polite"></p>
+        <div id="quiz-summary" class="quiz-summary" hidden></div>
+      </section>
+
+      <div
+        id="table-region"
+        class="table-wrap"
+        role="region"
+        aria-label="五十音清音表"
+      >
+        <table class="gojuon">
+          <caption class="visually-hidden">
+            清音五十音：纵列为あいうえお段，横行为あかさたなはまやらわ行
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col" class="corner"></th>
+              <th scope="col">あ段</th>
+              <th scope="col">い段</th>
+              <th scope="col">う段</th>
+              <th scope="col">え段</th>
+              <th scope="col">お段</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">あ行</th>
+              <td class="cell">
+                <span class="hiragana" lang="ja">あ</span>
+                <span class="katakana" lang="ja">ア</span>
+                <span class="romaji">a</span>
+              </td>
+              <td class="cell">
+                <span class="hiragana" lang="ja">い</span>
+                <span class="katakana" lang="ja">イ</span>
+                <span class="romaji">i</span>
+              </td>
+              <td class="cell">
+                <span class="hiragana" lang="ja">う</span>
+                <span class="katakana" lang="ja">ウ</span>
+                <span class="romaji">u</span>
+              </td>
+              <td class="cell">
+                <span class="hiragana" lang="ja">え</span>
+                <span class="katakana" lang="ja">エ</span>
+                <span class="romaji">e</span>
+              </td>
+              <td class="cell">
+                <span class="hiragana" lang="ja">お</span>
+                <span class="katakana" lang="ja">オ</span>
+                <span class="romaji">o</span>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">か行</th>
+              <td class="cell">
+                <span class="hiragana" lang="ja">か</span>
+                <span class="katakana" lang="ja">カ</span>
+                <span class="romaji">ka</span>
+              </td>
+              <td class="cell">
+                <span class="hiragana" lang="ja">き</span>
+                <span class="katakana" lang="ja">キ</span>
+                <span class="romaji">ki</span>
+              </td>
+              <td class="cell">
+                <span class="hiragana" lang="ja">く</span>
+                <span class="katakana" lang="ja">ク</span>
+                <span class="romaji">ku</span>
+              </td>
+              <td class="cell">
+                <span class="hiragana" lang="ja">け</span>
+                <span class="katakana" lang="ja">ケ</span>
+                <span class="romaji">ke</span>
+              </td>
+              <td class="cell">
+                <span class="hiragana" lang="ja">こ</span>
+                <span class="katakana" lang="ja">コ</span>
+                <span class="romaji">ko</span>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">さ行</th>
+              <td class="cell">
+                <span class="hiragana" lang="ja">さ</span>
+                <span class="katakana" lang="ja">サ</span>
+                <span class="romaji">sa</span>
+              </td>
+              <td class="cell">
+                <span class="hiragana" lang="ja">し</span>
+                <span class="katakana" lang="ja">シ</span>
+                <span class="romaji">shi</span>
+              </td>
+              <td class="cell">
+                <span class="hiragana" lang="ja">す</span>
+                <span class="katakana" lang="ja">ス</span>
+                <span class="romaji">su</span>
+              </td>
+              <td class="cell">
+                <span class="hiragana" lang="ja">せ</span>
+                <span class="katakana" lang="ja">セ</span>
+                <span class="romaji">se</span>
+              </td>
+              <td class="cell">
+                <span class="hiragana" lang="ja">そ</span>
+                <span class="katakana" lang="ja">ソ</span>
+                <span class="romaji">so</span>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">た行</th>
+              <td class="cell">
+                <span class="hiragana" lang="ja">た</span>
+                <span class="katakana" lang="ja">タ</span>
+                <span class="romaji">ta</span>
+              </td>
+              <td class="cell">
+                <span class="hiragana" lang="ja">ち</span>
+                <span class="katakana" lang="ja">チ</span>
+                <span class="romaji">chi</span>
+              </td>
+              <td class="cell">
+                <span class="hiragana" lang="ja">つ</span>
+                <span class="katakana" lang="ja">ツ</span>
+                <span class="romaji">tsu</span>
+              </td>
+              <td class="cell">
+                <span class="hiragana" lang="ja">て</span>
+                <span class="katakana" lang="ja">テ</span>
+                <span class="romaji">te</span>
+              </td>
+              <td class="cell">
+                <span class="hiragana" lang="ja">と</span>
+                <span class="katakana" lang="ja">ト</span>
+                <span class="romaji">to</span>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">な行</th>
+              <td class="cell">
+                <span class="hiragana" lang="ja">な</span>
+                <span class="katakana" lang="ja">ナ</span>
+                <span class="romaji">na</span>
+              </td>
+              <td class="cell">
+                <span class="hiragana" lang="ja">に</span>
+                <span class="katakana" lang="ja">ニ</span>
+                <span class="romaji">ni</span>
+              </td>
+              <td class="cell">
+                <span class="hiragana" lang="ja">ぬ</span>
+                <span class="katakana" lang="ja">ヌ</span>
+                <span class="romaji">nu</span>
+              </td>
+              <td class="cell">
+                <span class="hiragana" lang="ja">ね</span>
+                <span class="katakana" lang="ja">ネ</span>
+                <span class="romaji">ne</span>
+              </td>
+              <td class="cell">
+                <span class="hiragana" lang="ja">の</span>
+                <span class="katakana" lang="ja">ノ</span>
+                <span class="romaji">no</span>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">は行</th>
+              <td class="cell">
+                <span class="hiragana" lang="ja">は</span>
+                <span class="katakana" lang="ja">ハ</span>
+                <span class="romaji">ha</span>
+              </td>
+              <td class="cell">
+                <span class="hiragana" lang="ja">ひ</span>
+                <span class="katakana" lang="ja">ヒ</span>
+                <span class="romaji">hi</span>
+              </td>
+              <td class="cell">
+                <span class="hiragana" lang="ja">ふ</span>
+                <span class="katakana" lang="ja">フ</span>
+                <span class="romaji">fu</span>
+              </td>
+              <td class="cell">
+                <span class="hiragana" lang="ja">へ</span>
+                <span class="katakana" lang="ja">ヘ</span>
+                <span class="romaji">he</span>
+              </td>
+              <td class="cell">
+                <span class="hiragana" lang="ja">ほ</span>
+                <span class="katakana" lang="ja">ホ</span>
+                <span class="romaji">ho</span>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">ま行</th>
+              <td class="cell">
+                <span class="hiragana" lang="ja">ま</span>
+                <span class="katakana" lang="ja">マ</span>
+                <span class="romaji">ma</span>
+              </td>
+              <td class="cell">
+                <span class="hiragana" lang="ja">み</span>
+                <span class="katakana" lang="ja">ミ</span>
+                <span class="romaji">mi</span>
+              </td>
+              <td class="cell">
+                <span class="hiragana" lang="ja">む</span>
+                <span class="katakana" lang="ja">ム</span>
+                <span class="romaji">mu</span>
+              </td>
+              <td class="cell">
+                <span class="hiragana" lang="ja">め</span>
+                <span class="katakana" lang="ja">メ</span>
+                <span class="romaji">me</span>
+              </td>
+              <td class="cell">
+                <span class="hiragana" lang="ja">も</span>
+                <span class="katakana" lang="ja">モ</span>
+                <span class="romaji">mo</span>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">や行</th>
+              <td class="cell">
+                <span class="hiragana" lang="ja">や</span>
+                <span class="katakana" lang="ja">ヤ</span>
+                <span class="romaji">ya</span>
+              </td>
+              <td class="cell cell--empty" aria-label="空"></td>
+              <td class="cell">
+                <span class="hiragana" lang="ja">ゆ</span>
+                <span class="katakana" lang="ja">ユ</span>
+                <span class="romaji">yu</span>
+              </td>
+              <td class="cell cell--empty" aria-label="空"></td>
+              <td class="cell">
+                <span class="hiragana" lang="ja">よ</span>
+                <span class="katakana" lang="ja">ヨ</span>
+                <span class="romaji">yo</span>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">ら行</th>
+              <td class="cell">
+                <span class="hiragana" lang="ja">ら</span>
+                <span class="katakana" lang="ja">ラ</span>
+                <span class="romaji">ra</span>
+              </td>
+              <td class="cell">
+                <span class="hiragana" lang="ja">り</span>
+                <span class="katakana" lang="ja">リ</span>
+                <span class="romaji">ri</span>
+              </td>
+              <td class="cell">
+                <span class="hiragana" lang="ja">る</span>
+                <span class="katakana" lang="ja">ル</span>
+                <span class="romaji">ru</span>
+              </td>
+              <td class="cell">
+                <span class="hiragana" lang="ja">れ</span>
+                <span class="katakana" lang="ja">レ</span>
+                <span class="romaji">re</span>
+              </td>
+              <td class="cell">
+                <span class="hiragana" lang="ja">ろ</span>
+                <span class="katakana" lang="ja">ロ</span>
+                <span class="romaji">ro</span>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">わ行</th>
+              <td class="cell">
+                <span class="hiragana" lang="ja">わ</span>
+                <span class="katakana" lang="ja">ワ</span>
+                <span class="romaji">wa</span>
+              </td>
+              <td class="cell cell--empty" aria-label="空"></td>
+              <td class="cell cell--empty" aria-label="空"></td>
+              <td class="cell cell--empty" aria-label="空"></td>
+              <td class="cell">
+                <span class="hiragana" lang="ja">を</span>
+                <span class="katakana" lang="ja">ヲ</span>
+                <span class="romaji">wo</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+
+    <footer class="page-footer">
+      <p>や行仅有 や・ゆ・よ；わ行现代表记为 わ・を（お段）。</p>
+    </footer>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>
